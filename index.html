@@ -22,22 +22,18 @@
             overflow-x: hidden;
         }
 
-        /* ===== BACKGROUND WITH PARALLAX ===== */
+        /* ===== STABLE FIXED BACKGROUND ===== */
         .bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 120vh;
+            height: 100%;
             z-index: 0;
             background: 
-                linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.3) 100%),
-                url('https://i.postimg.cc/cJqJ0YmB/ruheteng-(-icebakis)-on-X.jpg') no-repeat center center/cover;
-            will-change: transform;
-            transition: transform 0.1s ease-out;
-        }
-        .bg::before {
-            display: none;
+                linear-gradient(135deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.3) 100%),
+                url('https://images.pexels.com/photos/2108819/pexels-photo-2108819.jpeg?auto=compress&cs=tinysrgb&w=1920') no-repeat center center/cover;
+            background-attachment: fixed;
         }
 
         .container {
@@ -498,7 +494,7 @@
 </head>
 <body>
 
-<!-- ===== BACKGROUND ===== -->
+<!-- ===== STABLE BACKGROUND ===== -->
 <div class="bg"></div>
 
 <div class="container">
@@ -687,20 +683,6 @@
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'all 0.8s ease';
         observer.observe(el);
-    });
-
-    // ===== PARALLAX BACKGROUND =====
-    let ticking = false;
-    window.addEventListener('scroll', function() {
-        if (!ticking) {
-            window.requestAnimationFrame(function() {
-                const bg = document.querySelector('.bg');
-                const scrolled = window.pageYOffset;
-                bg.style.transform = 'translate3d(0, ' + (scrolled * 0.4) + 'px, 0)';
-                ticking = false;
-            });
-            ticking = true;
-        }
     });
 </script>
 
