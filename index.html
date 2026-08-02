@@ -342,6 +342,20 @@
         .support-body {
             padding: 12px 0;
         }
+        .support-body input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.04);
+            color: #fff;
+            font-size: 13px;
+            outline: none;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+        .support-body input:focus { border-color: #00d4ff; }
+        .support-body input::placeholder { color: #667799; }
         .support-body textarea {
             width: 100%;
             padding: 12px;
@@ -558,10 +572,11 @@
             </div>
         </div>
         <div class="support-body">
+            <input type="email" id="userEmail" placeholder="Your email address" required />
             <textarea id="userMessage" placeholder="Type your message..." rows="3"></textarea>
             <button onclick="sendSupport()">📩 Send Message</button>
         </div>
-        <div class="support-footer" id="statusMsg">We'll reply within 24 hours</div>
+        <div class="support-footer" id="statusMsg">We'll reply within 24 hours via email</div>
     </div>
 </div>
 
@@ -608,30 +623,47 @@
         this.classList.toggle('active');
     });
 
-    // ===== TELEGRAM BOT SUPPORT =====
-    // ⚠️ REPLACE WITH YOUR BOT TOKEN AND CHAT ID ⚠️
-    const BOT_TOKEN = '8188406836:AAF-7iHz9Zrp1JnUBge7bPhAQeDVjHrpljE'; // @BotFather se lo
-    const CHAT_ID = '8916396405'; // @userinfobot se lo
+    // ===== SUPPORT SYSTEM (EMAIL + TELEGRAM) =====
+    // ⚠️ REPLACE WITH YOUR DETAILS ⚠️
+    const SUPPORT_EMAIL = 'your-support@email.com'; // Your support email
+    const BOT_TOKEN = '8188406836:AAF-7iHz9Zrp1JnUBge7bPhAQeDVjHrpljE'; // @BotFather se
+    const CHAT_ID = '8916396405'; // @userinfobot se
 
     function sendSupport() {
-        const msg = document.getElementById('userMessage').value.trim();
+        const email = document.getElementById('userEmail').value.trim();
+        const message = document.getElementById('userMessage').value.trim();
         const status = document.getElementById('statusMsg');
-        
-        if (!msg) {
+
+        if (!email || !message) {
             status.className = 'support-footer error';
-            status.textContent = '❌ Please type a message';
+            status.textContent = '❌ Please fill both fields';
+            return;
+        }
+
+        if (!email.includes('@')) {
+            status.className = 'support-footer error';
+            status.textContent = '❌ Please enter a valid email';
             return;
         }
 
         status.className = 'support-footer';
         status.textContent = '⏳ Sending...';
 
+        // 1. Open Gmail with pre-filled message
+        const subject = `Support Request from ${email}`;
+        const body = `From: ${email}\n\nMessage:\n${message}\n\n---\nSent from Wonder Hub Support Chat`;
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${SUPPORT_EMAIL}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        
+        // Open in new tab
+        window.open(gmailUrl, '_blank');
+
+        // 2. Send Telegram notification
         fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 chat_id: CHAT_ID,
-                text: `📩 **New Support Message!**\n\n💬 ${msg}\n🕐 ${new Date().toLocaleString()}`,
+                text: `📩 **New Support Message!**\n\n👤 Email: ${email}\n💬 Message: ${message}\n🕐 ${new Date().toLocaleString()}`,
                 parse_mode: 'Markdown'
             })
         })
@@ -639,20 +671,26 @@
         .then(data => {
             if (data.ok) {
                 status.className = 'support-footer success';
-                status.textContent = '✅ Sent! Admin will reply shortly.';
+                status.textContent = '✅ Sent! Check your email for reply.';
+                document.getElementById('userEmail').value = '';
                 document.getElementById('userMessage').value = '';
                 setTimeout(() => {
                     status.className = 'support-footer';
-                    status.textContent = 'We\'ll reply within 24 hours';
-                }, 5000);
+                    status.textContent = 'We\'ll reply within 24 hours via email';
+                }, 6000);
             } else {
                 status.className = 'support-footer error';
-                status.textContent = '❌ Failed. Please try again.';
+                status.textContent = '⚠️ Email opened. Telegram notification failed.';
             }
         })
         .catch(() => {
-            status.className = 'support-footer error';
-            status.textContent = '❌ Network error. Please try again.';
+            // Email already opened, so it's fine
+            status.className = 'support-footer success';
+            status.textContent = '✅ Email opened! Send it to reach us.';
+            setTimeout(() => {
+                status.className = 'support-footer';
+                status.textContent = 'We\'ll reply within 24 hours via email';
+            }, 5000);
         });
     }
 </script>
