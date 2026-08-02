@@ -19,7 +19,7 @@
             overflow-x: hidden;
         }
 
-        /* Animated Background */
+        /* ===== BACKGROUND IMAGE ===== */
         .bg {
             position: fixed;
             top: 0;
@@ -27,24 +27,13 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            background: radial-gradient(ellipse at 20% 50%, #0d1b3e 0%, transparent 60%),
-                        radial-gradient(ellipse at 80% 50%, #1a0a2e 0%, transparent 60%),
-                        #0b0f1a;
+            background: 
+                linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 100%),
+                url('https://i.postimg.cc/G3SWwKMP/hero.jpg') no-repeat center center/cover;
+            background-attachment: fixed;
         }
         .bg::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            background: radial-gradient(circle at 30% 40%, rgba(0, 212, 255, 0.03) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 60%, rgba(123, 47, 252, 0.03) 0%, transparent 50%);
-            animation: rotate 60s linear infinite;
-        }
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            display: none;
         }
 
         .container {
@@ -61,12 +50,12 @@
             justify-content: space-between;
             align-items: center;
             padding: 16px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
             flex-wrap: wrap;
             gap: 16px;
         }
         .logo {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 800;
             background: linear-gradient(135deg, #00d4ff, #7b2ffc);
             -webkit-background-clip: text;
@@ -95,7 +84,7 @@
             color: #00d4ff;
         }
         .nav-btn {
-            padding: 8px 22px;
+            padding: 8px 24px;
             border-radius: 50px;
             background: linear-gradient(135deg, #00d4ff, #7b2ffc);
             color: #fff !important;
@@ -115,13 +104,13 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding: 60px 0 30px;
+            padding: 70px 0 30px;
         }
         .hero-badge {
             display: inline-block;
-            background: rgba(0, 212, 255, 0.08);
-            border: 1px solid rgba(0, 212, 255, 0.12);
-            padding: 6px 18px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            padding: 6px 20px;
             border-radius: 50px;
             font-size: 12px;
             font-weight: 600;
@@ -131,7 +120,7 @@
             margin-bottom: 20px;
         }
         .hero h1 {
-            font-size: 56px;
+            font-size: 58px;
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 12px;
@@ -143,16 +132,12 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .hero h1 .highlight {
-            color: #ffffff;
-            -webkit-text-fill-color: #ffffff;
-        }
         .hero p {
             font-size: 19px;
-            color: #8899bb;
+            color: #99aacd;
             max-width: 640px;
-            line-height: 1.7;
-            margin: 8px auto 30px;
+            line-height: 1.8;
+            margin: 8px auto 35px;
         }
         .hero p span {
             color: #00d4ff;
@@ -187,12 +172,12 @@
             box-shadow: 0 8px 40px rgba(0, 212, 255, 0.4);
         }
         .btn-secondary {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.06);
             color: #fff;
             border: 1px solid rgba(255,255,255,0.08);
         }
         .btn-secondary:hover {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.12);
             transform: translateY(-3px);
         }
         .btn-discord {
@@ -217,7 +202,7 @@
             text-align: center;
         }
         .stat-number {
-            font-size: 34px;
+            font-size: 36px;
             font-weight: 800;
             background: linear-gradient(135deg, #00d4ff, #7b2ffc);
             -webkit-background-clip: text;
@@ -239,9 +224,9 @@
             margin: 40px 0 30px;
         }
         .feature-card {
-            background: rgba(20, 27, 43, 0.6);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.04);
+            background: rgba(20, 27, 43, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05);
             border-radius: 16px;
             padding: 24px 20px;
             text-align: center;
@@ -249,11 +234,11 @@
         }
         .feature-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(0, 212, 255, 0.15);
+            border-color: rgba(0, 212, 255, 0.2);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
         .feature-icon {
-            font-size: 28px;
+            font-size: 30px;
             margin-bottom: 8px;
             display: block;
         }
@@ -268,26 +253,56 @@
             margin-top: 4px;
         }
 
+        /* ===== RULES ===== */
+        .rules-box {
+            background: rgba(20, 27, 43, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 24px 30px;
+            max-width: 700px;
+            margin: 30px auto;
+            text-align: center;
+        }
+        .rules-box h3 {
+            color: #00d4ff;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .rules-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 20px;
+            text-align: left;
+        }
+        .rules-grid p {
+            font-size: 13px;
+            color: #8899bb;
+            padding: 4px 0;
+        }
+
         /* ===== FAQ ===== */
         .faq-section {
-            margin: 30px 0 20px;
+            margin: 30px auto 20px;
             max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
         }
         .faq-section h2 {
             font-size: 24px;
             font-weight: 700;
             text-align: center;
             margin-bottom: 20px;
+            color: #fff;
         }
         .faq-item {
-            background: rgba(20, 27, 43, 0.5);
+            background: rgba(20, 27, 43, 0.6);
+            backdrop-filter: blur(8px);
             border: 1px solid rgba(255,255,255,0.04);
             border-radius: 12px;
             padding: 16px 22px;
             margin-bottom: 10px;
             transition: 0.3s;
+            cursor: pointer;
         }
         .faq-item:hover {
             border-color: rgba(0, 212, 255, 0.1);
@@ -299,16 +314,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            cursor: pointer;
         }
         .faq-q span {
             color: #00d4ff;
             font-size: 18px;
+            transition: 0.3s;
+        }
+        .faq-item.active .faq-q span {
+            transform: rotate(180deg);
         }
         .faq-a {
             font-size: 14px;
             color: #8899bb;
-            margin-top: 8px;
+            margin-top: 10px;
             line-height: 1.6;
             display: none;
         }
@@ -336,24 +354,26 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
-            .hero h1 { font-size: 40px; }
+            .hero h1 { font-size: 42px; }
             .features { grid-template-columns: 1fr 1fr; }
             .stats { gap: 30px; }
         }
         @media (max-width: 600px) {
             .hero h1 { font-size: 30px; }
             .navbar { flex-direction: column; align-items: center; }
-            .nav-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 14px; }
             .features { grid-template-columns: 1fr; }
             .stats { gap: 20px; }
             .stat-number { font-size: 26px; }
             .hero-buttons { flex-direction: column; align-items: center; }
             .btn { width: 100%; justify-content: center; }
+            .rules-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
+<!-- ===== BACKGROUND ===== -->
 <div class="bg"></div>
 
 <div class="container">
@@ -365,7 +385,7 @@
             <a href="#">Home</a>
             <a href="#features">Features</a>
             <a href="#faq">FAQ</a>
-            <a href="https://t.me/YOUR_BOT_USERNAME" target="_blank" class="nav-btn">Start Bot</a>
+            <a href="https://t.me/Wnnndrrhbb_bot" target="_blank" class="nav-btn">Start Bot</a>
         </div>
     </nav>
 
@@ -438,23 +458,36 @@
         </div>
     </div>
 
+    <!-- ===== RULES ===== -->
+    <div class="rules-box">
+        <h3>📜 Lobby Rules</h3>
+        <div class="rules-grid">
+            <p>🚫 No illegal content</p>
+            <p>🔞 Only 16+ content</p>
+            <p>❌ No spam or flood</p>
+            <p>🔗 No links</p>
+            <p>🚫 No CP or prohibited</p>
+            <p>⚠️ Violation = Permanent Ban</p>
+        </div>
+    </div>
+
     <!-- ===== FAQ ===== -->
     <div class="faq-section" id="faq">
         <h2>Frequently Asked Questions</h2>
         <div class="faq-item active">
-            <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+            <div class="faq-q">
                 What is Wonder Hub? <span>▾</span>
             </div>
             <div class="faq-a">Wonder Hub is a premium Telegram media sharing bot for 16+ content. Fast, secure, and verified.</div>
         </div>
         <div class="faq-item">
-            <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+            <div class="faq-q">
                 How do I join? <span>▾</span>
             </div>
             <div class="faq-a">Click "Start Bot" and follow the verification process. Send 5 media files to complete registration.</div>
         </div>
         <div class="faq-item">
-            <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+            <div class="faq-q">
                 Is it safe? <span>▾</span>
             </div>
             <div class="faq-a">Yes! We have strict rules, admin moderation, and zero tolerance for illegal content.</div>
@@ -472,10 +505,10 @@
 </div>
 
 <script>
-    // FAQ toggle
-    document.querySelectorAll('.faq-q').forEach(item => {
+    // FAQ Toggle
+    document.querySelectorAll('.faq-item').forEach(item => {
         item.addEventListener('click', function() {
-            this.parentElement.classList.toggle('active');
+            this.classList.toggle('active');
         });
     });
 </script>
