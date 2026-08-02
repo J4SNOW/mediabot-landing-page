@@ -11,6 +11,9 @@
             padding: 0;
             box-sizing: border-box;
         }
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Inter', sans-serif;
             background: #0b0f1a;
@@ -19,7 +22,7 @@
             overflow-x: hidden;
         }
 
-        /* ===== BACKGROUND IMAGE ===== */
+        /* ===== BACKGROUND ===== */
         .bg {
             position: fixed;
             top: 0;
@@ -28,7 +31,7 @@
             height: 100%;
             z-index: 0;
             background: 
-                linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 100%),
+                linear-gradient(135deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.3) 100%),
                 url('https://i.postimg.cc/G3SWwKMP/hero.jpg') no-repeat center center/cover;
             background-attachment: fixed;
         }
@@ -44,6 +47,28 @@
             padding: 30px 20px 60px;
         }
 
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .animate {
+            animation: fadeUp 0.8s ease forwards;
+        }
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .delay-4 { animation-delay: 0.4s; opacity: 0; }
+
         /* ===== NAVBAR ===== */
         .navbar {
             display: flex;
@@ -53,6 +78,7 @@
             border-bottom: 1px solid rgba(255,255,255,0.06);
             flex-wrap: wrap;
             gap: 16px;
+            backdrop-filter: blur(10px);
         }
         .logo {
             font-size: 26px;
@@ -79,6 +105,20 @@
             font-size: 14px;
             font-weight: 500;
             transition: 0.3s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #00d4ff, #7b2ffc);
+            transition: 0.3s;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
         }
         .nav-links a:hover {
             color: #00d4ff;
@@ -93,8 +133,11 @@
             transition: 0.3s;
             box-shadow: 0 4px 20px rgba(0, 212, 255, 0.2);
         }
+        .nav-btn::after {
+            display: none !important;
+        }
         .nav-btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.02);
             box-shadow: 0 8px 30px rgba(0, 212, 255, 0.35);
         }
 
@@ -104,7 +147,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding: 70px 0 30px;
+            padding: 80px 0 40px;
         }
         .hero-badge {
             display: inline-block;
@@ -118,22 +161,23 @@
             letter-spacing: 0.5px;
             text-transform: uppercase;
             margin-bottom: 20px;
+            animation: pulse 2s infinite;
         }
         .hero h1 {
-            font-size: 58px;
+            font-size: 64px;
             font-weight: 900;
             line-height: 1.1;
-            margin-bottom: 12px;
-            letter-spacing: -1px;
+            margin-bottom: 16px;
+            letter-spacing: -2px;
         }
         .hero h1 .gradient {
-            background: linear-gradient(135deg, #00d4ff 0%, #7b2ffc 50%, #ff6fd8 100%);
+            background: linear-gradient(135deg, #00d4ff 0%, #7b2ffc 40%, #ff6fd8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         .hero p {
-            font-size: 19px;
+            font-size: 20px;
             color: #99aacd;
             max-width: 640px;
             line-height: 1.8;
@@ -141,26 +185,29 @@
         }
         .hero p span {
             color: #00d4ff;
+            font-weight: 600;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 14px;
+            gap: 16px;
             flex-wrap: wrap;
             justify-content: center;
         }
         .btn {
-            padding: 14px 38px;
+            padding: 14px 40px;
             border-radius: 50px;
             font-weight: 600;
             font-size: 15px;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             transition: 0.3s;
             border: none;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
         .btn-primary {
             background: linear-gradient(135deg, #00d4ff, #7b2ffc);
@@ -168,13 +215,13 @@
             box-shadow: 0 4px 24px rgba(0, 212, 255, 0.25);
         }
         .btn-primary:hover {
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.02);
             box-shadow: 0 8px 40px rgba(0, 212, 255, 0.4);
         }
         .btn-secondary {
             background: rgba(255,255,255,0.06);
             color: #fff;
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
         }
         .btn-secondary:hover {
             background: rgba(255,255,255,0.12);
@@ -186,7 +233,7 @@
             box-shadow: 0 4px 20px rgba(88, 101, 242, 0.2);
         }
         .btn-discord:hover {
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.02);
             box-shadow: 0 8px 40px rgba(88, 101, 242, 0.35);
         }
 
@@ -194,15 +241,15 @@
         .stats {
             display: flex;
             justify-content: center;
-            gap: 60px;
-            margin: 50px 0 20px;
+            gap: 80px;
+            margin: 60px 0 30px;
             flex-wrap: wrap;
         }
         .stat-item {
             text-align: center;
         }
         .stat-number {
-            font-size: 36px;
+            font-size: 40px;
             font-weight: 800;
             background: linear-gradient(135deg, #00d4ff, #7b2ffc);
             -webkit-background-clip: text;
@@ -214,60 +261,67 @@
             color: #667799;
             margin-top: 4px;
             font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== SECTION TITLES ===== */
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            letter-spacing: -1px;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: #667799;
+            font-size: 16px;
+            margin-bottom: 30px;
         }
 
         /* ===== FEATURES ===== */
         .features {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 24px;
             margin: 40px 0 30px;
         }
         .feature-card {
             background: rgba(20, 27, 43, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 16px;
-            padding: 24px 20px;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 28px 24px;
             text-align: center;
-            transition: 0.3s;
+            transition: 0.4s;
+            cursor: pointer;
         }
         .feature-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-8px) scale(1.02);
             border-color: rgba(0, 212, 255, 0.2);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 12px 50px rgba(0, 0, 0, 0.4);
         }
         .feature-icon {
-            font-size: 30px;
-            margin-bottom: 8px;
+            font-size: 36px;
+            margin-bottom: 10px;
             display: block;
         }
         .feature-title {
-            font-size: 15px;
-            font-weight: 600;
+            font-size: 16px;
+            font-weight: 700;
             color: #fff;
+            margin-bottom: 4px;
         }
         .feature-desc {
             font-size: 13px;
             color: #667799;
-            margin-top: 4px;
+            line-height: 1.5;
         }
 
         /* ===== SCREENSHOTS ===== */
         .screenshots {
             text-align: center;
             margin: 50px 0 30px;
-        }
-        .screenshots h2 {
-            font-size: 28px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 6px;
-        }
-        .section-desc {
-            color: #667799;
-            font-size: 16px;
-            margin-bottom: 30px;
         }
         .screenshot-grid {
             display: grid;
@@ -278,20 +332,20 @@
         }
         .screenshot-card {
             background: rgba(20, 27, 43, 0.7);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(255,255,255,0.06);
             border-radius: 16px;
             padding: 16px;
-            transition: 0.3s;
+            transition: 0.4s;
         }
         .screenshot-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px) scale(1.01);
             border-color: rgba(0, 212, 255, 0.2);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 12px 50px rgba(0, 0, 0, 0.4);
         }
         .screenshot-img {
             width: 100%;
-            border-radius: 10px;
+            border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.06);
             transition: 0.3s;
         }
@@ -299,7 +353,7 @@
             transform: scale(1.02);
         }
         .screenshot-label {
-            margin-top: 10px;
+            margin-top: 12px;
             font-size: 13px;
             color: #8899bb;
             font-weight: 500;
@@ -307,23 +361,16 @@
 
         /* ===== FAQ ===== */
         .faq-section {
-            margin: 30px auto 20px;
+            margin: 40px auto 20px;
             max-width: 800px;
-        }
-        .faq-section h2 {
-            font-size: 24px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 20px;
-            color: #fff;
         }
         .faq-item {
             background: rgba(20, 27, 43, 0.6);
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255,255,255,0.04);
-            border-radius: 12px;
-            padding: 16px 22px;
-            margin-bottom: 10px;
+            border-radius: 14px;
+            padding: 18px 24px;
+            margin-bottom: 12px;
             transition: 0.3s;
             cursor: pointer;
         }
@@ -332,7 +379,7 @@
         }
         .faq-q {
             font-weight: 600;
-            font-size: 15px;
+            font-size: 16px;
             color: #fff;
             display: flex;
             justify-content: space-between;
@@ -340,8 +387,9 @@
         }
         .faq-q span {
             color: #00d4ff;
-            font-size: 18px;
+            font-size: 20px;
             transition: 0.3s;
+            font-weight: 300;
         }
         .faq-item.active .faq-q span {
             transform: rotate(180deg);
@@ -349,8 +397,8 @@
         .faq-a {
             font-size: 14px;
             color: #8899bb;
-            margin-top: 10px;
-            line-height: 1.6;
+            margin-top: 12px;
+            line-height: 1.7;
             display: none;
         }
         .faq-item.active .faq-a {
@@ -370,6 +418,7 @@
             color: #667799;
             text-decoration: none;
             margin: 0 12px;
+            transition: 0.3s;
         }
         .footer a:hover {
             color: #00d4ff;
@@ -379,7 +428,7 @@
         @media (max-width: 900px) {
             .hero h1 { font-size: 42px; }
             .features { grid-template-columns: 1fr 1fr; }
-            .stats { gap: 30px; }
+            .stats { gap: 40px; }
             .screenshot-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 600px) {
@@ -388,10 +437,11 @@
             .nav-links { flex-wrap: wrap; justify-content: center; gap: 14px; }
             .features { grid-template-columns: 1fr; }
             .stats { gap: 20px; }
-            .stat-number { font-size: 26px; }
+            .stat-number { font-size: 28px; }
             .hero-buttons { flex-direction: column; align-items: center; }
             .btn { width: 100%; justify-content: center; }
             .screenshot-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 24px; }
         }
     </style>
 </head>
@@ -403,41 +453,41 @@
 <div class="container">
 
     <!-- ===== NAVBAR ===== -->
-    <nav class="navbar">
+    <nav class="navbar animate delay-1">
         <div class="logo">Wonder<span>Hub</span></div>
         <div class="nav-links">
-            <a href="#">Home</a>
+            <a href="#home">Home</a>
             <a href="#features">Features</a>
             <a href="#screenshots">How It Works</a>
             <a href="#faq">FAQ</a>
-            <a href="https://t.me/" target="_blank" class="nav-btn">Start Bot</a>
+            <a href="https://t.me/YOUR_BOT_USERNAME" target="_blank" class="nav-btn">🚀 Start Bot</a>
         </div>
     </nav>
 
     <!-- ===== HERO ===== -->
-    <section class="hero">
-        <span class="hero-badge">🚀 Now Live</span>
-        <h1>
+    <section class="hero" id="home">
+        <span class="hero-badge animate delay-1">🚀 Now Live</span>
+        <h1 class="animate delay-2">
             Welcome to <br/>
             <span class="gradient">Wonder Hub</span>
         </h1>
-        <p>
+        <p class="animate delay-3">
             The Ultimate <span>Telegram Community</span> Platform.<br/>
             Share photos, videos, and GIFs instantly with a fast, secure,
             and verified community.
         </p>
-        <div class="hero-buttons">
-            <a href="https://t.me/Wxndxrhbbbb_bot" target="_blank" class="btn btn-primary">🤖 Start Bot</a>
+        <div class="hero-buttons animate delay-4">
+            <a href="https://t.me/YOUR_BOT_USERNAME" target="_blank" class="btn btn-primary">🤖 Start Bot</a>
             <a href="https://discord.com/invite/zScN7Ef3Hh" target="_blank" class="btn btn-discord">💬 Discord</a>
-            <a href="#features" class="btn btn-secondary">Explore</a>
+            <a href="#features" class="btn btn-secondary">Explore ↓</a>
         </div>
     </section>
 
     <!-- ===== STATS ===== -->
-    <div class="stats">
+    <div class="stats animate delay-3">
         <div class="stat-item">
             <div class="stat-number">500+</div>
-            <div class="stat-label">Users</div>
+            <div class="stat-label">Active Users</div>
         </div>
         <div class="stat-item">
             <div class="stat-number">20K+</div>
@@ -445,58 +495,58 @@
         </div>
         <div class="stat-item">
             <div class="stat-number">99.9%</div>
-            <div class="stat-label">Uptime</div>
+            <div class="stat-label">Uptime Guarantee</div>
         </div>
     </div>
 
     <!-- ===== FEATURES ===== -->
     <div class="features" id="features">
-        <div class="feature-card">
+        <div class="feature-card animate delay-2">
             <span class="feature-icon">📤</span>
-            <div class="feature-title">Instant Sharing</div>
-            <div class="feature-desc">Share photos, videos &amp; GIFs instantly</div>
+            <div class="feature-title">Instant Media Sharing</div>
+            <div class="feature-desc">Share photos, videos &amp; GIFs with the entire community in real-time.</div>
         </div>
-        <div class="feature-card">
+        <div class="feature-card animate delay-3">
             <span class="feature-icon">🛡️</span>
             <div class="feature-title">Secure &amp; Verified</div>
-            <div class="feature-desc">Verified community with strict rules</div>
+            <div class="feature-desc">A trusted community with strict safety protocols and active moderation.</div>
         </div>
-        <div class="feature-card">
+        <div class="feature-card animate delay-4">
             <span class="feature-icon">⚡</span>
-            <div class="feature-title">Ultra Fast</div>
-            <div class="feature-desc">Lightning-fast delivery to all members</div>
+            <div class="feature-title">Lightning Fast</div>
+            <div class="feature-desc">Experience ultra-fast delivery with optimized servers and minimal latency.</div>
         </div>
-        <div class="feature-card">
+        <div class="feature-card animate delay-2">
             <span class="feature-icon">👑</span>
             <div class="feature-title">Admin Controls</div>
-            <div class="feature-desc">Full moderation &amp; management tools</div>
+            <div class="feature-desc">Powerful moderation tools including bans, deletion, and user management.</div>
         </div>
-        <div class="feature-card">
+        <div class="feature-card animate delay-3">
             <span class="feature-icon">🏆</span>
             <div class="feature-title">Leaderboard</div>
-            <div class="feature-desc">Top contributors &amp; engagement system</div>
+            <div class="feature-desc">Track top contributors and engage with the most active members.</div>
         </div>
-        <div class="feature-card">
+        <div class="feature-card animate delay-4">
             <span class="feature-icon">🔗</span>
-            <div class="feature-title">Discord Backup</div>
-            <div class="feature-desc">Community backup server</div>
+            <div class="feature-title">Discord Integration</div>
+            <div class="feature-desc">Join our Discord community for backup, updates, and real-time support.</div>
         </div>
     </div>
 
     <!-- ===== SCREENSHOTS ===== -->
     <div class="screenshots" id="screenshots">
-        <h2>📸 How It Works</h2>
-        <p class="section-desc">See how Wonder Hub works in action</p>
+        <h2 class="section-title animate delay-1">📸 How It Works</h2>
+        <p class="section-subtitle animate delay-2">Get started in three simple steps</p>
         <div class="screenshot-grid">
-            <div class="screenshot-card">
+            <div class="screenshot-card animate delay-2">
                 <img src="https://i.postimg.cc/j5qS9c80/step1.png" alt="Step 1: Registration" class="screenshot-img"/>
                 <div class="screenshot-label">Step 1: Start &amp; Send 5 Videos</div>
             </div>
-            <div class="screenshot-card">
+            <div class="screenshot-card animate delay-3">
                 <img src="https://i.postimg.cc/wvWjdNPv/step2.png" alt="Step 2: Registration Complete" class="screenshot-img"/>
                 <div class="screenshot-label">Step 2: Registration Complete</div>
             </div>
-            <div class="screenshot-card">
+            <div class="screenshot-card animate delay-4">
                 <img src="https://i.postimg.cc/0QtyqS3W/step3.png" alt="Step 3: Welcome to Wonder Hub" class="screenshot-img"/>
                 <div class="screenshot-label">Step 3: Welcome &amp; Community Access</div>
             </div>
@@ -505,33 +555,44 @@
 
     <!-- ===== FAQ ===== -->
     <div class="faq-section" id="faq">
-        <h2>Frequently Asked Questions</h2>
-        <div class="faq-item active">
+        <h2 class="section-title animate delay-1">❓ Frequently Asked Questions</h2>
+        <p class="section-subtitle animate delay-2">Everything you need to know</p>
+        
+        <div class="faq-item active animate delay-2">
             <div class="faq-q">
                 What is Wonder Hub? <span>▾</span>
             </div>
-            <div class="faq-a">Wonder Hub is a premium Telegram media sharing bot for 16+ content. Fast, secure, and verified.</div>
+            <div class="faq-a">Wonder Hub is a premium Telegram-based media sharing community. It allows users to share photos, videos, and GIFs in a secure, moderated environment with real-time delivery to all members.</div>
         </div>
-        <div class="faq-item">
+        
+        <div class="faq-item animate delay-3">
             <div class="faq-q">
-                How do I join? <span>▾</span>
+                How do I get started? <span>▾</span>
             </div>
-            <div class="faq-a">Click "Start Bot" and follow the verification process. Send 5 media files to complete registration.</div>
+            <div class="faq-a">Simply click the "Start Bot" button, follow the verification process, and send 5 media files to complete your registration. Once approved, you'll gain full access to the community.</div>
         </div>
-        <div class="faq-item">
+        
+        <div class="faq-item animate delay-4">
             <div class="faq-q">
-                Is it safe? <span>▾</span>
+                Is Wonder Hub safe to use? <span>▾</span>
             </div>
-            <div class="faq-a">Yes! We have strict rules, admin moderation, and zero tolerance for illegal content.</div>
+            <div class="faq-a">Absolutely! Wonder Hub employs strict moderation, content guidelines, and admin oversight to ensure a safe and respectful environment. We have zero tolerance for illegal or harmful content.</div>
+        </div>
+
+        <div class="faq-item animate delay-4">
+            <div class="faq-q">
+                What are the community rules? <span>▾</span>
+            </div>
+            <div class="faq-a">Our key rules include: no illegal content, only 16+ material allowed, no spam or flooding, no external links, and respect for all members. Violations result in a permanent ban.</div>
         </div>
     </div>
 
     <!-- ===== FOOTER ===== -->
-    <div class="footer">
+    <div class="footer animate delay-4">
         &copy; 2026 Wonder Hub &bull;
-        <a href="#">Privacy</a> &bull;
-        <a href="#">Terms</a> &bull;
-        Made with ❤️
+        <a href="#">Privacy Policy</a> &bull;
+        <a href="#">Terms of Service</a> &bull;
+        Made with ❤️ by Wonder Hub Team
     </div>
 
 </div>
@@ -540,8 +601,40 @@
     // FAQ Toggle
     document.querySelectorAll('.faq-item').forEach(item => {
         item.addEventListener('click', function() {
+            // Close others
+            document.querySelectorAll('.faq-item').forEach(other => {
+                if (other !== this) other.classList.remove('active');
+            });
             this.classList.toggle('active');
         });
+    });
+
+    // Smooth scroll for navbar links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // Animate on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.8s ease';
+        observer.observe(el);
     });
 </script>
 
