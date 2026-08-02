@@ -768,11 +768,11 @@
             <div class="avatar">WH</div>
             <div class="info">
                 <h4>Wonder Hub Support</h4>
-                <p>🟢 Online</p>
+                <p id="statusBadge">🟢 Online</p>
             </div>
         </div>
         <div class="support-messages" id="chatMessages">
-            <div class="msg bot">👋 Hey! Welcome to Wonder Hub. Ask us anything!</div>
+            <!-- Messages will appear here -->
         </div>
         <div class="support-input">
             <input type="text" id="chatInput" placeholder="Type your message..." />
@@ -781,85 +781,60 @@
     </div>
 </div>
 
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
 <script>
-    // ===== FAQ TOGGLE =====
-    document.querySelectorAll('.faq-item').forEach(item => {
-        item.addEventListener('click', function() {
-            document.querySelectorAll('.faq-item').forEach(other => {
-                if (other !== this) other.classList.remove('active');
-            });
-            this.classList.toggle('active');
-        });
-    });
-
-    // ===== SMOOTH SCROLL =====
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-    });
-
-    // ===== SCROLL ANIMATIONS =====
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.animate').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.8s ease';
-        observer.observe(el);
-    });
-
-    // ===== LIVE SUPPORT CHAT WITH DISCORD =====
-    const toggle = document.getElementById('supportToggle');
-    const box = document.getElementById('supportBox');
+    // ===== SOCKET.IO SUPPORT CHAT =====
+    const socket = io('http://YOUR_VPS_IP:3000');
+    const chat = document.getElementById('chatMessages');
     const input = document.getElementById('chatInput');
     const sendBtn = document.getElementById('sendBtn');
-    const chat = document.getElementById('chatMessages');
+    const toggle = document.getElementById('supportToggle');
+    const box = document.getElementById('supportBox');
 
-    // === DISCORD WEBHOOK URL ===
-    const DISCORD_WEBHOOK = 'https://discord.com/api/webhooks/1533372626355880006/F5ozwYVsiDmqxouD96Jwul2a6Y-_QQrAwQTkFa0858DFIMOPLYkeErps1J4Zna1VPidh';
-
+    // Toggle chat box
     toggle.addEventListener('click', () => {
         toggle.classList.toggle('active');
         box.classList.toggle('active');
     });
 
+    // Load old messages
+    socket.on('load_messages', (msgs) => {
+        chat.innerHTML = '';
+        if (msgs.length === 0) {
+            chat.innerHTML = `<div class="msg bot">👋 Welcome! Ask us anything.</div>`;
+        } else {
+            msgs.forEach(msg => {
+                chat.innerHTML += `<div class="msg ${msg.from === 'user' ? 'user' : 'bot'}">${msg.text}</div>`;
+            });
+        }
+        chat.scrollTop = chat.scrollHeight;
+    });
+
+    // New message received
+    socket.on('new_message', (msg) => {
+        chat.innerHTML += `<div class="msg ${msg.from === 'user' ? 'user' : 'bot'}">${msg.text}</div>`;
+        chat.scrollTop = chat.scrollHeight;
+    });
+
+    // Send message
     function sendMessage() {
         const msg = input.value.trim();
         if (!msg) return;
-        
-        chat.innerHTML += `<div class="msg user">${msg}</div>`;
+        socket.emit('user_message', msg);
         input.value = '';
-        chat.scrollTop = chat.scrollHeight;
-
-        // Send to Discord
-        fetch(DISCORD_WEBHOOK, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                content: `📩 **New Support Message!**\n\n💬 Message: ${msg}\n🕐 Time: ${new Date().toLocaleString()}`
-            })
-        }).catch(err => console.log('Discord error:', err));
-
-        // Auto reply
-        setTimeout(() => {
-            chat.innerHTML += `<div class="msg bot">✅ Thanks! We'll reply shortly in Discord.</div>`;
-            chat.scrollTop = chat.scrollHeight;
-        }, 800);
     }
 
     sendBtn.addEventListener('click', sendMessage);
     input.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') sendMessage();
+    });
+
+    // Update status badge
+    socket.on('connect', () => {
+        document.getElementById('statusBadge').textContent = '🟢 Online';
+    });
+    socket.on('disconnect', () => {
+        document.getElementById('statusBadge').textContent = '🔴 Offline';
     });
 </script>
 
