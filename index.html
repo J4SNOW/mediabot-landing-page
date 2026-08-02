@@ -22,18 +22,19 @@
             overflow-x: hidden;
         }
 
-        /* ===== BACKGROUND ===== */
+        /* ===== BACKGROUND WITH PARALLAX ===== */
         .bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 120vh;
             z-index: 0;
             background: 
-                linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 100%),
-                url('https://i.postimg.cc/VkqRW95x/My-Mind-My-Space-All-in-my-Control.jpg') no-repeat center center/cover;
-            background-attachment: fixed;
+                linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.3) 100%),
+                url('https://i.postimg.cc/XYL20c39/download.jpg') no-repeat center center/cover;
+            will-change: transform;
+            transition: transform 0.1s ease-out;
         }
         .bg::before {
             display: none;
@@ -650,7 +651,7 @@
 </div>
 
 <script>
-    // FAQ Toggle
+    // ===== FAQ TOGGLE =====
     document.querySelectorAll('.faq-item').forEach(item => {
         item.addEventListener('click', function() {
             document.querySelectorAll('.faq-item').forEach(other => {
@@ -660,7 +661,7 @@
         });
     });
 
-    // Smooth scroll
+    // ===== SMOOTH SCROLL =====
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -671,7 +672,7 @@
         });
     });
 
-    // Scroll animations
+    // ===== SCROLL ANIMATIONS =====
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -686,6 +687,20 @@
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'all 0.8s ease';
         observer.observe(el);
+    });
+
+    // ===== PARALLAX BACKGROUND =====
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                const bg = document.querySelector('.bg');
+                const scrolled = window.pageYOffset;
+                bg.style.transform = 'translate3d(0, ' + (scrolled * 0.4) + 'px, 0)';
+                ticking = false;
+            });
+            ticking = true;
+        }
     });
 </script>
 
