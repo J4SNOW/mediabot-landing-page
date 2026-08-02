@@ -23,7 +23,6 @@
             overflow-x: hidden;
         }
 
-        /* ===== BACKGROUND ===== */
         .bg {
             position: fixed;
             top: 0;
@@ -782,60 +781,86 @@
     </div>
 </div>
 
-<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
 <script>
-    // ===== SOCKET.IO SUPPORT CHAT =====
-    const socket = io('http://185.185.126.6:3000');
-    const chat = document.getElementById('chatMessages');
-    const input = document.getElementById('chatInput');
-    const sendBtn = document.getElementById('sendBtn');
+    // ===== FAQ TOGGLE =====
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.addEventListener('click', function() {
+            document.querySelectorAll('.faq-item').forEach(other => {
+                if (other !== this) other.classList.remove('active');
+            });
+            this.classList.toggle('active');
+        });
+    });
+
+    // ===== SMOOTH SCROLL =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+    // ===== SCROLL ANIMATIONS =====
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.8s ease';
+        observer.observe(el);
+    });
+
+    // ===== SUPPORT CHAT =====
     const toggle = document.getElementById('supportToggle');
     const box = document.getElementById('supportBox');
+    const input = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const chat = document.getElementById('chatMessages');
 
-    // Toggle chat box
     toggle.addEventListener('click', () => {
         toggle.classList.toggle('active');
         box.classList.toggle('active');
     });
 
-    // Load old messages
-    socket.on('load_messages', (msgs) => {
-        chat.innerHTML = '';
-        if (msgs.length === 0) {
-            chat.innerHTML = `<div class="msg bot">👋 Welcome! Ask us anything.</div>`;
-        } else {
-            msgs.forEach(msg => {
-                chat.innerHTML += `<div class="msg ${msg.from === 'user' ? 'user' : 'bot'}">${msg.text}</div>`;
-            });
-        }
-        chat.scrollTop = chat.scrollHeight;
-    });
-
-    // New message received
-    socket.on('new_message', (msg) => {
-        chat.innerHTML += `<div class="msg ${msg.from === 'user' ? 'user' : 'bot'}">${msg.text}</div>`;
-        chat.scrollTop = chat.scrollHeight;
-    });
-
-    // Send message
-    function sendMessage() {
+    async function sendMessage() {
         const msg = input.value.trim();
         if (!msg) return;
-        socket.emit('user_message', msg);
+
+        // Show user message
+        chat.innerHTML += `<div class="msg user">${msg}</div>`;
         input.value = '';
+        chat.scrollTop = chat.scrollHeight;
+
+        // Send to Discord via Vercel API
+        try {
+            const response = await fetch('/api/support', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: msg })
+            });
+
+            if (response.ok) {
+                chat.innerHTML += `<div class="msg bot">✅ Thanks! We'll reply shortly in Discord.</div>`;
+            } else {
+                chat.innerHTML += `<div class="msg bot">❌ Failed to send. Please try again.</div>`;
+            }
+        } catch (error) {
+            chat.innerHTML += `<div class="msg bot">❌ Network error. Please try again.</div>`;
+        }
+        chat.scrollTop = chat.scrollHeight;
     }
 
     sendBtn.addEventListener('click', sendMessage);
     input.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') sendMessage();
-    });
-
-    // Update status badge
-    socket.on('connect', () => {
-        document.getElementById('statusBadge').textContent = '🟢 Online';
-    });
-    socket.on('disconnect', () => {
-        document.getElementById('statusBadge').textContent = '🔴 Offline';
     });
 </script>
 
