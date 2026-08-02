@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wonder Lobby - Premium Media Sharing</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Wonder Hub - Ultimate Telegram Community</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <style>
         * {
             margin: 0;
@@ -13,13 +13,14 @@
         }
         body {
             font-family: 'Inter', sans-serif;
-            background: #0a0e17;
+            background: #0b0f1a;
             color: #ffffff;
             min-height: 100vh;
             overflow-x: hidden;
         }
+
         /* Animated Background */
-        .bg-animation {
+        .bg {
             position: fixed;
             top: 0;
             left: 0;
@@ -28,9 +29,9 @@
             z-index: 0;
             background: radial-gradient(ellipse at 20% 50%, #0d1b3e 0%, transparent 60%),
                         radial-gradient(ellipse at 80% 50%, #1a0a2e 0%, transparent 60%),
-                        #0a0e17;
+                        #0b0f1a;
         }
-        .bg-animation::before {
+        .bg::before {
             content: '';
             position: absolute;
             width: 200%;
@@ -49,149 +50,137 @@
         .container {
             position: relative;
             z-index: 1;
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
-            min-height: 100vh;
+            padding: 30px 20px 60px;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            flex-wrap: wrap;
+            gap: 16px;
         }
-
-        /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        .badge {
-            display: inline-block;
-            background: rgba(0, 212, 255, 0.1);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 600;
-            color: #00d4ff;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-        .logo-icon {
-            font-size: 72px;
-            display: block;
-            margin-bottom: 15px;
-        }
-        h1 {
-            font-size: 52px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #00d4ff 0%, #7b2ffc 50%, #ff6fd8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 15px;
-            letter-spacing: -1px;
-        }
-        .subtitle {
-            font-size: 20px;
-            color: #8899bb;
-            font-weight: 400;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-        .subtitle span {
-            color: #00d4ff;
-            font-weight: 600;
-        }
-
-        /* Stats */
-        .stats {
-            display: flex;
-            gap: 40px;
-            justify-content: center;
-            margin: 30px 0 40px;
-        }
-        .stat-item {
-            text-align: center;
-        }
-        .stat-number {
-            font-size: 28px;
+        .logo {
+            font-size: 24px;
             font-weight: 800;
             background: linear-gradient(135deg, #00d4ff, #7b2ffc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            letter-spacing: -0.5px;
         }
-        .stat-label {
-            font-size: 13px;
+        .logo span {
+            font-weight: 300;
             color: #667799;
-            margin-top: 4px;
+            -webkit-text-fill-color: #667799;
         }
-
-        /* Features Grid */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            width: 100%;
-            margin: 30px 0 40px;
-        }
-        .feature-card {
-            background: rgba(20, 27, 43, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 16px;
-            padding: 24px 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 212, 255, 0.3);
-            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.05);
-        }
-        .feature-icon {
-            font-size: 32px;
-            margin-bottom: 10px;
-            display: block;
-        }
-        .feature-title {
-            font-size: 15px;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 4px;
-        }
-        .feature-desc {
-            font-size: 12px;
-            color: #667799;
-        }
-
-        /* Buttons */
-        .buttons {
+        .nav-links {
             display: flex;
-            gap: 16px;
+            gap: 32px;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #8899bb;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+        .nav-btn {
+            padding: 8px 22px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #00d4ff, #7b2ffc);
+            color: #fff !important;
+            font-weight: 600;
+            font-size: 13px;
+            transition: 0.3s;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.2);
+        }
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.35);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 60px 0 30px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.08);
+            border: 1px solid rgba(0, 212, 255, 0.12);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #00d4ff;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+        }
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, #00d4ff 0%, #7b2ffc 50%, #ff6fd8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero h1 .highlight {
+            color: #ffffff;
+            -webkit-text-fill-color: #ffffff;
+        }
+        .hero p {
+            font-size: 19px;
+            color: #8899bb;
+            max-width: 640px;
+            line-height: 1.7;
+            margin: 8px auto 30px;
+        }
+        .hero p span {
+            color: #00d4ff;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
             flex-wrap: wrap;
             justify-content: center;
-            margin: 20px 0 30px;
         }
         .btn {
-            padding: 16px 40px;
+            padding: 14px 38px;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 16px;
+            font-size: 15px;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
+            gap: 8px;
+            transition: 0.3s;
             border: none;
             cursor: pointer;
         }
         .btn-primary {
             background: linear-gradient(135deg, #00d4ff, #7b2ffc);
             color: #fff;
-            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.25);
+            box-shadow: 0 4px 24px rgba(0, 212, 255, 0.25);
         }
         .btn-primary:hover {
             transform: translateY(-3px);
@@ -200,7 +189,7 @@
         .btn-secondary {
             background: rgba(255,255,255,0.05);
             color: #fff;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.08);
         }
         .btn-secondary:hover {
             background: rgba(255,255,255,0.1);
@@ -209,142 +198,238 @@
         .btn-discord {
             background: #5865F2;
             color: #fff;
-            box-shadow: 0 4px 20px rgba(88, 101, 242, 0.25);
+            box-shadow: 0 4px 20px rgba(88, 101, 242, 0.2);
         }
         .btn-discord:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 40px rgba(88, 101, 242, 0.4);
+            box-shadow: 0 8px 40px rgba(88, 101, 242, 0.35);
         }
 
-        /* Rules Box */
-        .rules-box {
-            background: rgba(20, 27, 43, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 16px;
-            padding: 30px 35px;
-            width: 100%;
-            max-width: 700px;
-            margin: 20px 0 30px;
-        }
-        .rules-box h3 {
-            color: #00d4ff;
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 15px;
+        /* ===== STATS ===== */
+        .stats {
             display: flex;
-            align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 60px;
+            margin: 50px 0 20px;
+            flex-wrap: wrap;
         }
-        .rules-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px 20px;
+        .stat-item {
+            text-align: center;
         }
-        .rules-grid p {
-            font-size: 13px;
-            color: #8899bb;
-            padding: 4px 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .stat-number {
+            font-size: 34px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #7b2ffc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .rules-grid p span {
+        .stat-label {
             font-size: 14px;
+            color: #667799;
+            margin-top: 4px;
+            font-weight: 500;
         }
 
-        /* Footer */
+        /* ===== FEATURES ===== */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 40px 0 30px;
+        }
+        .feature-card {
+            background: rgba(20, 27, 43, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 212, 255, 0.15);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+        .feature-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .feature-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+        }
+        .feature-desc {
+            font-size: 13px;
+            color: #667799;
+            margin-top: 4px;
+        }
+
+        /* ===== FAQ ===== */
+        .faq-section {
+            margin: 30px 0 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .faq-section h2 {
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .faq-item {
+            background: rgba(20, 27, 43, 0.5);
+            border: 1px solid rgba(255,255,255,0.04);
+            border-radius: 12px;
+            padding: 16px 22px;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+        .faq-item:hover {
+            border-color: rgba(0, 212, 255, 0.1);
+        }
+        .faq-q {
+            font-weight: 600;
+            font-size: 15px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .faq-q span {
+            color: #00d4ff;
+            font-size: 18px;
+        }
+        .faq-a {
+            font-size: 14px;
+            color: #8899bb;
+            margin-top: 8px;
+            line-height: 1.6;
+            display: none;
+        }
+        .faq-item.active .faq-a {
+            display: block;
+        }
+
+        /* ===== FOOTER ===== */
         .footer {
-            margin-top: 30px;
             text-align: center;
             font-size: 13px;
             color: #334466;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            margin-top: 30px;
         }
         .footer a {
             color: #667799;
             text-decoration: none;
+            margin: 0 12px;
         }
         .footer a:hover {
             color: #00d4ff;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            h1 { font-size: 36px; }
-            .subtitle { font-size: 17px; }
-            .features-grid { grid-template-columns: 1fr 1fr; }
-            .stats { gap: 20px; }
-            .stat-number { font-size: 22px; }
-            .rules-grid { grid-template-columns: 1fr; }
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 40px; }
+            .features { grid-template-columns: 1fr 1fr; }
+            .stats { gap: 30px; }
         }
-        @media (max-width: 480px) {
-            .container { padding: 20px 15px; }
-            h1 { font-size: 28px; }
-            .features-grid { grid-template-columns: 1fr; }
-            .buttons { flex-direction: column; align-items: center; }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 30px; }
+            .navbar { flex-direction: column; align-items: center; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+            .features { grid-template-columns: 1fr; }
+            .stats { gap: 20px; }
+            .stat-number { font-size: 26px; }
+            .hero-buttons { flex-direction: column; align-items: center; }
             .btn { width: 100%; justify-content: center; }
-            .rules-box { padding: 20px; }
         }
     </style>
 </head>
 <body>
 
-<div class="bg-animation"></div>
+<div class="bg"></div>
 
 <div class="container">
-    <!-- Header -->
-    <div class="header">
-        <span class="badge">🚀 Now Live</span>
-        <span class="logo-icon">🌟</span>
-        <h1>Wonder Lobby</h1>
-        <p class="subtitle">
-            Premium <span>Media Sharing</span> Bot for Telegram — 
-            Fast, Secure &amp; Private
-        </p>
-    </div>
 
-    <!-- Stats -->
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <div class="logo">Wonder<span>Hub</span></div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#features">Features</a>
+            <a href="#faq">FAQ</a>
+            <a href="https://t.me/YOUR_BOT_USERNAME" target="_blank" class="nav-btn">Start Bot</a>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <span class="hero-badge">🚀 Now Live</span>
+        <h1>
+            Welcome to <br/>
+            <span class="gradient">Wonder Hub</span>
+        </h1>
+        <p>
+            The Ultimate <span>Telegram Community</span> Platform.<br/>
+            Share photos, videos, and GIFs instantly with a fast, secure,
+            and verified community.
+        </p>
+        <div class="hero-buttons">
+            <a href="https://t.me/YOUR_BOT_USERNAME" target="_blank" class="btn btn-primary">🤖 Start Bot</a>
+            <a href="https://discord.com/invite/zScN7Ef3Hh" target="_blank" class="btn btn-discord">💬 Discord</a>
+            <a href="#features" class="btn btn-secondary">Explore</a>
+        </div>
+    </section>
+
+    <!-- ===== STATS ===== -->
     <div class="stats">
         <div class="stat-item">
-            <div class="stat-number">3000+</div>
+            <div class="stat-number">500+</div>
             <div class="stat-label">Users</div>
         </div>
         <div class="stat-item">
-            <div class="stat-number">&lt;2s</div>
-            <div class="stat-label">Share Speed</div>
+            <div class="stat-number">20K+</div>
+            <div class="stat-label">Media Shared</div>
         </div>
         <div class="stat-item">
-            <div class="stat-number">24/7</div>
+            <div class="stat-number">99.9%</div>
             <div class="stat-label">Uptime</div>
         </div>
     </div>
 
-    <!-- Features -->
-    <div class="features-grid">
+    <!-- ===== FEATURES ===== -->
+    <div class="features" id="features">
         <div class="feature-card">
             <span class="feature-icon">📤</span>
-            <div class="feature-title">16+ Media Sharing</div>
-            <div class="feature-desc">Videos, Photos, GIFs, Stickers</div>
+            <div class="feature-title">Instant Sharing</div>
+            <div class="feature-desc">Share photos, videos &amp; GIFs instantly</div>
         </div>
         <div class="feature-card">
             <span class="feature-icon">🛡️</span>
-            <div class="feature-title">Secure &amp; Private</div>
-            <div class="feature-desc">End-to-end encrypted sharing</div>
+            <div class="feature-title">Secure &amp; Verified</div>
+            <div class="feature-desc">Verified community with strict rules</div>
         </div>
         <div class="feature-card">
             <span class="feature-icon">⚡</span>
             <div class="feature-title">Ultra Fast</div>
-            <div class="feature-desc">Instant delivery to all users</div>
+            <div class="feature-desc">Lightning-fast delivery to all members</div>
         </div>
         <div class="feature-card">
             <span class="feature-icon">👑</span>
             <div class="feature-title">Admin Controls</div>
-            <div class="feature-desc">Full moderation capabilities</div>
+            <div class="feature-desc">Full moderation &amp; management tools</div>
         </div>
         <div class="feature-card">
             <span class="feature-icon">🏆</span>
             <div class="feature-title">Leaderboard</div>
-            <div class="feature-desc">Top contributors system</div>
+            <div class="feature-desc">Top contributors &amp; engagement system</div>
         </div>
         <div class="feature-card">
             <span class="feature-icon">🔗</span>
@@ -353,39 +438,47 @@
         </div>
     </div>
 
-    <!-- Buttons -->
-    <div class="buttons">
-        <a href="https://t.me/Wnnndrrhbb_bot" target="_blank" class="btn btn-primary">
-            🤖 Open Bot
-        </a>
-        <a href="https://discord.com/invite/zScN7Ef3Hh" target="_blank" class="btn btn-discord">
-            💬 Discord
-        </a>
-        <a href="#rules" class="btn btn-secondary">
-            📜 Rules
-        </a>
-    </div>
-
-    <!-- Rules -->
-    <div class="rules-box" id="rules">
-        <h3>📜 Lobby Rules</h3>
-        <div class="rules-grid">
-            <p><span>🚫</span> No illegal content</p>
-            <p><span>🔞</span> Only 16+ content</p>
-            <p><span>❌</span> No spam or flood</p>
-            <p><span>🔗</span> No links</p>
-            <p><span>🚫</span> No CP or prohibited content</p>
-            <p><span>⚠️</span> Violation = Permanent Ban</p>
+    <!-- ===== FAQ ===== -->
+    <div class="faq-section" id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item active">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+                What is Wonder Hub? <span>▾</span>
+            </div>
+            <div class="faq-a">Wonder Hub is a premium Telegram media sharing bot for 16+ content. Fast, secure, and verified.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+                How do I join? <span>▾</span>
+            </div>
+            <div class="faq-a">Click "Start Bot" and follow the verification process. Send 5 media files to complete registration.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+                Is it safe? <span>▾</span>
+            </div>
+            <div class="faq-a">Yes! We have strict rules, admin moderation, and zero tolerance for illegal content.</div>
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- ===== FOOTER ===== -->
     <div class="footer">
-        Made with ❤️ for Wonder Lobby Community &bull; 
-        <a href="#" onclick="event.preventDefault()">Privacy</a> &bull; 
-        <a href="#" onclick="event.preventDefault()">Terms</a>
+        &copy; 2026 Wonder Hub &bull;
+        <a href="#">Privacy</a> &bull;
+        <a href="#">Terms</a> &bull;
+        Made with ❤️
     </div>
+
 </div>
+
+<script>
+    // FAQ toggle
+    document.querySelectorAll('.faq-q').forEach(item => {
+        item.addEventListener('click', function() {
+            this.parentElement.classList.toggle('active');
+        });
+    });
+</script>
 
 </body>
 </html>
