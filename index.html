@@ -22,7 +22,7 @@
             overflow-x: hidden;
         }
 
-        /* ===== BACKGROUND ===== */
+        /* ===== BACKGROUND IMAGE ===== */
         .bg {
             position: fixed;
             top: 0;
@@ -32,7 +32,7 @@
             z-index: 0;
             background: 
                 linear-gradient(135deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.3) 100%),
-                url('https://i.postimg.cc/G3SWwKMP/hero.jpg') no-repeat center center/cover;
+                url('https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&w=1920') no-repeat center center/cover;
             background-attachment: fixed;
         }
         .bg::before {
@@ -55,10 +55,6 @@
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
         }
 
         .animate {
@@ -460,7 +456,7 @@
             <a href="#features">Features</a>
             <a href="#screenshots">How It Works</a>
             <a href="#faq">FAQ</a>
-            <a href="https://t.me/YOUR_BOT_USERNAME" target="_blank" class="nav-btn">🚀 Start Bot</a>
+            <a href="https://t.me/wonderlobbybot" target="_blank" class="nav-btn">🚀 Start Bot</a>
         </div>
     </nav>
 
@@ -477,7 +473,7 @@
             and verified community.
         </p>
         <div class="hero-buttons animate delay-4">
-            <a href="https://t.me/YOUR_BOT_USERNAME" target="_blank" class="btn btn-primary">🤖 Start Bot</a>
+            <a href="https://t.me/wonderlobbybot" target="_blank" class="btn btn-primary">🤖 Start Bot</a>
             <a href="https://discord.com/invite/zScN7Ef3Hh" target="_blank" class="btn btn-discord">💬 Discord</a>
             <a href="#features" class="btn btn-secondary">Explore ↓</a>
         </div>
@@ -601,7 +597,6 @@
     // FAQ Toggle
     document.querySelectorAll('.faq-item').forEach(item => {
         item.addEventListener('click', function() {
-            // Close others
             document.querySelectorAll('.faq-item').forEach(other => {
                 if (other !== this) other.classList.remove('active');
             });
