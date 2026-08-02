@@ -253,6 +253,58 @@
             margin-top: 4px;
         }
 
+        /* ===== SCREENSHOTS ===== */
+        .screenshots {
+            text-align: center;
+            margin: 50px 0 30px;
+        }
+        .screenshots h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        .section-desc {
+            color: #667799;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .screenshot-card {
+            background: rgba(20, 27, 43, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 16px;
+            transition: 0.3s;
+        }
+        .screenshot-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+        .screenshot-img {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: 0.3s;
+        }
+        .screenshot-img:hover {
+            transform: scale(1.02);
+        }
+        .screenshot-label {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #8899bb;
+            font-weight: 500;
+        }
+
         /* ===== RULES ===== */
         .rules-box {
             background: rgba(20, 27, 43, 0.7);
@@ -357,6 +409,7 @@
             .hero h1 { font-size: 42px; }
             .features { grid-template-columns: 1fr 1fr; }
             .stats { gap: 30px; }
+            .screenshot-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 600px) {
             .hero h1 { font-size: 30px; }
@@ -368,6 +421,7 @@
             .hero-buttons { flex-direction: column; align-items: center; }
             .btn { width: 100%; justify-content: center; }
             .rules-grid { grid-template-columns: 1fr; }
+            .screenshot-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -384,6 +438,7 @@
         <div class="nav-links">
             <a href="#">Home</a>
             <a href="#features">Features</a>
+            <a href="#screenshots">How It Works</a>
             <a href="#faq">FAQ</a>
             <a href="https://t.me/YOUR_BOT_USERNAME" target="_blank" class="nav-btn">Start Bot</a>
         </div>
@@ -402,7 +457,7 @@
             and verified community.
         </p>
         <div class="hero-buttons">
-            <a href="https://t.me/Wnnndrrhbb_bot" target="_blank" class="btn btn-primary">🤖 Start Bot</a>
+            <a href="https://t.me/YOUR_BOT_USERNAME" target="_blank" class="btn btn-primary">🤖 Start Bot</a>
             <a href="https://discord.com/invite/zScN7Ef3Hh" target="_blank" class="btn btn-discord">💬 Discord</a>
             <a href="#features" class="btn btn-secondary">Explore</a>
         </div>
@@ -455,6 +510,26 @@
             <span class="feature-icon">🔗</span>
             <div class="feature-title">Discord Backup</div>
             <div class="feature-desc">Community backup server</div>
+        </div>
+    </div>
+
+    <!-- ===== SCREENSHOTS ===== -->
+    <div class="screenshots" id="screenshots">
+        <h2>📸 How It Works</h2>
+        <p class="section-desc">See how Wonder Hub works in action</p>
+        <div class="screenshot-grid">
+            <div class="screenshot-card">
+                <img src="https://i.postimg.cc/j5qS9c80/step1.png" alt="Step 1: Registration" class="screenshot-img"/>
+                <div class="screenshot-label">Step 1: Start &amp; Send 5 Videos</div>
+            </div>
+            <div class="screenshot-card">
+                <img src="https://i.postimg.cc/wvWjdNPv/step2.png" alt="Step 2: Registration Complete" class="screenshot-img"/>
+                <div class="screenshot-label">Step 2: Registration Complete</div>
+            </div>
+            <div class="screenshot-card">
+                <img src="https://i.postimg.cc/0QtyqS3W/step3.png" alt="Step 3: Welcome to Wonder Hub" class="screenshot-img"/>
+                <div class="screenshot-label">Step 3: Welcome &amp; Community Access</div>
+            </div>
         </div>
     </div>
 
