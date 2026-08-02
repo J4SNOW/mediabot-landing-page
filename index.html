@@ -7,14 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Inter', sans-serif;
             background: #0b0f1a;
@@ -22,7 +16,6 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
-
         .bg {
             position: fixed;
             top: 0;
@@ -30,12 +23,10 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            background: 
-                linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.3) 100%),
-                url('https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?w=1920&q=80') no-repeat center center/cover;
+            background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 100%),
+                        url('https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?w=1920&q=80') no-repeat center center/cover;
             background-attachment: fixed;
         }
-
         .container {
             position: relative;
             z-index: 1;
@@ -43,41 +34,22 @@
             margin: 0 auto;
             padding: 30px 20px 60px;
         }
-
-        /* ===== ANIMATIONS ===== */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes glowPulse {
-            0%, 100% { text-shadow: 0 0 30px rgba(0, 212, 255, 0.2); }
-            50% { text-shadow: 0 0 60px rgba(0, 212, 255, 0.5), 0 0 100px rgba(123, 47, 252, 0.3); }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-        }
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .animate {
-            animation: fadeUp 0.9s ease forwards;
-        }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes glowPulse { 0%, 100% { text-shadow: 0 0 30px rgba(0,212,255,0.2); } 50% { text-shadow: 0 0 60px rgba(0,212,255,0.5), 0 0 100px rgba(123,47,252,0.3); } }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
+        @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .animate { animation: fadeUp 0.9s ease forwards; }
         .delay-1 { animation-delay: 0.1s; opacity: 0; }
         .delay-2 { animation-delay: 0.2s; opacity: 0; }
         .delay-3 { animation-delay: 0.3s; opacity: 0; }
         .delay-4 { animation-delay: 0.4s; opacity: 0; }
 
-        /* ===== NAVBAR ===== */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 16px 28px;
-            background: rgba(11, 15, 26, 0.6);
+            background: rgba(11,15,26,0.6);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(255,255,255,0.05);
             border-radius: 20px;
@@ -95,40 +67,12 @@
             background-clip: text;
             letter-spacing: -0.5px;
         }
-        .logo span {
-            font-weight: 300;
-            color: #667799;
-            -webkit-text-fill-color: #667799;
-        }
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-        }
-        .nav-links a {
-            color: #8899bb;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: 0.3s;
-            position: relative;
-        }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(135deg, #00d4ff, #7b2ffc);
-            transition: 0.3s;
-        }
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        .nav-links a:hover {
-            color: #00d4ff;
-        }
+        .logo span { font-weight: 300; color: #667799; -webkit-text-fill-color: #667799; }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a { color: #8899bb; text-decoration: none; font-size: 14px; font-weight: 500; transition: 0.3s; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: linear-gradient(135deg, #00d4ff, #7b2ffc); transition: 0.3s; }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: #00d4ff; }
         .nav-btn {
             padding: 10px 28px;
             border-radius: 50px;
@@ -137,14 +81,10 @@
             font-weight: 600;
             font-size: 13px;
             transition: 0.3s;
-            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.2);
+            box-shadow: 0 4px 20px rgba(0,212,255,0.2);
         }
-        .nav-btn:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.4);
-        }
+        .nav-btn:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 8px 30px rgba(0,212,255,0.4); }
 
-        /* ===== HERO ===== */
         .hero {
             display: flex;
             flex-direction: column;
@@ -154,8 +94,8 @@
         }
         .hero-badge {
             display: inline-block;
-            background: rgba(0, 212, 255, 0.08);
-            border: 1px solid rgba(0, 212, 255, 0.12);
+            background: rgba(0,212,255,0.08);
+            border: 1px solid rgba(0,212,255,0.12);
             padding: 8px 24px;
             border-radius: 50px;
             font-size: 12px;
@@ -189,10 +129,7 @@
             margin-top: 8px;
             letter-spacing: 3px;
         }
-        .hero .sub-headline span {
-            color: #00d4ff;
-            font-weight: 500;
-        }
+        .hero .sub-headline span { color: #00d4ff; font-weight: 500; }
         .hero p {
             font-size: 20px;
             color: #99aacd;
@@ -200,17 +137,9 @@
             line-height: 1.9;
             margin: 30px auto 40px;
         }
-        .hero p span {
-            color: #00d4ff;
-            font-weight: 600;
-        }
+        .hero p span { color: #00d4ff; font-weight: 600; }
 
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+        .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
         .btn {
             padding: 16px 44px;
             border-radius: 50px;
@@ -236,38 +165,26 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
             transition: 0.5s;
         }
-        .btn:hover::before {
-            left: 100%;
-        }
+        .btn:hover::before { left: 100%; }
         .btn-primary {
             background: linear-gradient(135deg, #00d4ff, #7b2ffc);
             color: #fff;
-            box-shadow: 0 4px 30px rgba(0, 212, 255, 0.25);
+            box-shadow: 0 4px 30px rgba(0,212,255,0.25);
         }
-        .btn-primary:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 8px 50px rgba(0, 212, 255, 0.5);
-        }
+        .btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 50px rgba(0,212,255,0.5); }
         .btn-secondary {
             background: rgba(255,255,255,0.05);
             color: #fff;
             border: 1px solid rgba(255,255,255,0.08);
         }
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.1);
-            transform: translateY(-3px);
-        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
         .btn-discord {
             background: #5865F2;
             color: #fff;
-            box-shadow: 0 4px 20px rgba(88, 101, 242, 0.2);
+            box-shadow: 0 4px 20px rgba(88,101,242,0.2);
         }
-        .btn-discord:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 8px 40px rgba(88, 101, 242, 0.4);
-        }
+        .btn-discord:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 40px rgba(88,101,242,0.4); }
 
-        /* ===== STATS ===== */
         .stats {
             display: flex;
             justify-content: center;
@@ -275,10 +192,7 @@
             margin: 60px 0 40px;
             flex-wrap: wrap;
         }
-        .stat-item {
-            text-align: center;
-            animation: float 3s ease-in-out infinite;
-        }
+        .stat-item { text-align: center; animation: float 3s ease-in-out infinite; }
         .stat-item:nth-child(2) { animation-delay: 0.5s; }
         .stat-item:nth-child(3) { animation-delay: 1s; }
         .stat-number {
@@ -289,15 +203,8 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .stat-label {
-            font-size: 14px;
-            color: #667799;
-            margin-top: 4px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
+        .stat-label { font-size: 14px; color: #667799; margin-top: 4px; font-weight: 500; letter-spacing: 0.5px; }
 
-        /* ===== SECTION TITLES ===== */
         .section-title {
             text-align: center;
             font-size: 38px;
@@ -311,14 +218,8 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .section-subtitle {
-            text-align: center;
-            color: #667799;
-            font-size: 17px;
-            margin-bottom: 35px;
-        }
+        .section-subtitle { text-align: center; color: #667799; font-size: 17px; margin-bottom: 35px; }
 
-        /* ===== FEATURES ===== */
         .features {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -326,7 +227,7 @@
             margin: 40px 0 30px;
         }
         .feature-card {
-            background: rgba(20, 27, 43, 0.6);
+            background: rgba(20,27,43,0.6);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255,255,255,0.05);
             border-radius: 20px;
@@ -334,32 +235,12 @@
             text-align: center;
             transition: 0.4s;
         }
-        .feature-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(0, 212, 255, 0.2);
-        }
-        .feature-icon {
-            font-size: 40px;
-            margin-bottom: 12px;
-            display: block;
-        }
-        .feature-title {
-            font-size: 17px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 6px;
-        }
-        .feature-desc {
-            font-size: 13px;
-            color: #667799;
-            line-height: 1.6;
-        }
+        .feature-card:hover { transform: translateY(-8px) scale(1.02); border-color: rgba(0,212,255,0.2); }
+        .feature-icon { font-size: 40px; margin-bottom: 12px; display: block; }
+        .feature-title { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+        .feature-desc { font-size: 13px; color: #667799; line-height: 1.6; }
 
-        /* ===== SCREENSHOTS ===== */
-        .screenshots {
-            text-align: center;
-            margin: 50px 0 30px;
-        }
+        .screenshots { text-align: center; margin: 50px 0 30px; }
         .screenshot-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -368,36 +249,20 @@
             margin: 0 auto;
         }
         .screenshot-card {
-            background: rgba(20, 27, 43, 0.6);
+            background: rgba(20,27,43,0.6);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255,255,255,0.05);
             border-radius: 16px;
             padding: 16px;
             transition: 0.4s;
         }
-        .screenshot-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(0, 212, 255, 0.15);
-        }
-        .screenshot-img {
-            width: 100%;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        .screenshot-label {
-            margin-top: 12px;
-            font-size: 13px;
-            color: #8899bb;
-            font-weight: 500;
-        }
+        .screenshot-card:hover { transform: translateY(-6px); border-color: rgba(0,212,255,0.15); }
+        .screenshot-img { width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+        .screenshot-label { margin-top: 12px; font-size: 13px; color: #8899bb; font-weight: 500; }
 
-        /* ===== FAQ ===== */
-        .faq-section {
-            margin: 40px auto 20px;
-            max-width: 800px;
-        }
+        .faq-section { margin: 40px auto 20px; max-width: 800px; }
         .faq-item {
-            background: rgba(20, 27, 43, 0.5);
+            background: rgba(20,27,43,0.5);
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255,255,255,0.04);
             border-radius: 14px;
@@ -406,37 +271,14 @@
             transition: 0.3s;
             cursor: pointer;
         }
-        .faq-item:hover {
-            border-color: rgba(0, 212, 255, 0.08);
-        }
-        .faq-q {
-            font-weight: 600;
-            font-size: 16px;
-            color: #fff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .faq-q span {
-            color: #00d4ff;
-            font-size: 20px;
-            transition: 0.3s;
-        }
-        .faq-item.active .faq-q span {
-            transform: rotate(180deg);
-        }
-        .faq-a {
-            font-size: 14px;
-            color: #8899bb;
-            margin-top: 12px;
-            line-height: 1.7;
-            display: none;
-        }
-        .faq-item.active .faq-a {
-            display: block;
-        }
+        .faq-item:hover { border-color: rgba(0,212,255,0.08); }
+        .faq-q { font-weight: 600; font-size: 16px; color: #fff; display: flex; justify-content: space-between; align-items: center; }
+        .faq-q span { color: #00d4ff; font-size: 20px; transition: 0.3s; }
+        .faq-item.active .faq-q span { transform: rotate(180deg); }
+        .faq-a { font-size: 14px; color: #8899bb; margin-top: 12px; line-height: 1.7; display: none; }
+        .faq-item.active .faq-a { display: block; }
 
-        /* ===== LIVE SUPPORT WIDGET ===== */
+        /* ===== SUPPORT CHAT WIDGET ===== */
         .support-widget {
             position: fixed;
             bottom: 30px;
@@ -452,42 +294,30 @@
             color: #fff;
             font-size: 28px;
             cursor: pointer;
-            box-shadow: 0 4px 30px rgba(0, 212, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0,212,255,0.3);
             transition: 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .support-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 50px rgba(0, 212, 255, 0.5);
-        }
-        .support-toggle .fa-times {
-            display: none;
-        }
-        .support-toggle.active .fa-comment {
-            display: none;
-        }
-        .support-toggle.active .fa-times {
-            display: inline;
-        }
+        .support-toggle:hover { transform: scale(1.1); box-shadow: 0 8px 50px rgba(0,212,255,0.5); }
+        .support-toggle .fa-times { display: none; }
+        .support-toggle.active .fa-comment { display: none; }
+        .support-toggle.active .fa-times { display: inline; }
         .support-box {
             position: absolute;
             bottom: 80px;
             right: 0;
             width: 350px;
-            background: rgba(20, 27, 43, 0.95);
+            background: rgba(20,27,43,0.95);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 20px;
             padding: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.6);
             display: none;
-            animation: fadeUp 0.3s ease forwards;
         }
-        .support-box.active {
-            display: block;
-        }
+        .support-box.active { display: block; }
         .support-header {
             display: flex;
             align-items: center;
@@ -506,65 +336,31 @@
             font-weight: 700;
             font-size: 18px;
         }
-        .support-header .info h4 {
-            font-size: 14px;
-            font-weight: 600;
-            color: #fff;
-        }
-        .support-header .info p {
-            font-size: 12px;
-            color: #00d4ff;
-        }
-        .support-messages {
-            max-height: 200px;
-            overflow-y: auto;
+        .support-header .info h4 { font-size: 14px; font-weight: 600; color: #fff; }
+        .support-header .info p { font-size: 12px; color: #00d4ff; }
+
+        .support-body {
             padding: 12px 0;
         }
-        .support-messages .msg {
-            padding: 10px 14px;
-            border-radius: 12px;
-            margin-bottom: 8px;
-            max-width: 85%;
-            font-size: 13px;
-            line-height: 1.5;
-        }
-        .support-messages .msg.bot {
-            background: rgba(0, 212, 255, 0.08);
-            color: #ddd;
-            border: 1px solid rgba(0, 212, 255, 0.05);
-            margin-right: auto;
-        }
-        .support-messages .msg.user {
-            background: linear-gradient(135deg, #00d4ff, #7b2ffc);
-            color: #fff;
-            margin-left: auto;
-            border: none;
-        }
-        .support-input {
-            display: flex;
-            gap: 10px;
-            padding-top: 12px;
-            border-top: 1px solid rgba(255,255,255,0.06);
-        }
-        .support-input input {
-            flex: 1;
-            padding: 10px 14px;
+        .support-body textarea {
+            width: 100%;
+            padding: 12px;
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.08);
             background: rgba(255,255,255,0.04);
             color: #fff;
             font-size: 13px;
             outline: none;
+            resize: vertical;
+            font-family: inherit;
+            min-height: 80px;
             transition: 0.3s;
         }
-        .support-input input:focus {
-            border-color: #00d4ff;
-        }
-        .support-input input::placeholder {
-            color: #667799;
-        }
-        .support-input button {
-            padding: 10px 18px;
+        .support-body textarea:focus { border-color: #00d4ff; }
+        .support-body textarea::placeholder { color: #667799; }
+        .support-body button {
+            width: 100%;
+            padding: 12px;
             border-radius: 12px;
             border: none;
             background: linear-gradient(135deg, #00d4ff, #7b2ffc);
@@ -572,12 +368,20 @@
             font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
+            margin-top: 10px;
         }
-        .support-input button:hover {
-            transform: scale(1.05);
+        .support-body button:hover { transform: scale(1.02); }
+        .support-footer {
+            font-size: 12px;
+            color: #667799;
+            text-align: center;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            margin-top: 10px;
         }
+        .support-footer.success { color: #00d4ff; }
+        .support-footer.error { color: #ff6b6b; }
 
-        /* ===== FOOTER ===== */
         .footer {
             text-align: center;
             font-size: 13px;
@@ -586,17 +390,9 @@
             border-top: 1px solid rgba(255,255,255,0.04);
             margin-top: 30px;
         }
-        .footer a {
-            color: #667799;
-            text-decoration: none;
-            margin: 0 12px;
-            transition: 0.3s;
-        }
-        .footer a:hover {
-            color: #00d4ff;
-        }
+        .footer a { color: #667799; text-decoration: none; margin: 0 12px; transition: 0.3s; }
+        .footer a:hover { color: #00d4ff; }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
             .hero h1 { font-size: 48px; }
             .features { grid-template-columns: 1fr 1fr; }
@@ -622,7 +418,6 @@
 </head>
 <body>
 
-<!-- ===== BACKGROUND ===== -->
 <div class="bg"></div>
 
 <div class="container">
@@ -663,18 +458,9 @@
 
     <!-- ===== STATS ===== -->
     <div class="stats animate delay-3">
-        <div class="stat-item">
-            <div class="stat-number">500+</div>
-            <div class="stat-label">Active Users</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number">20K+</div>
-            <div class="stat-label">Media Shared</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number">99.9%</div>
-            <div class="stat-label">Uptime Guarantee</div>
-        </div>
+        <div class="stat-item"><div class="stat-number">500+</div><div class="stat-label">Active Users</div></div>
+        <div class="stat-item"><div class="stat-number">20K+</div><div class="stat-label">Media Shared</div></div>
+        <div class="stat-item"><div class="stat-number">99.9%</div><div class="stat-label">Uptime Guarantee</div></div>
     </div>
 
     <!-- ===== FEATURES ===== -->
@@ -757,7 +543,7 @@
 
 </div>
 
-<!-- ===== LIVE SUPPORT WIDGET ===== -->
+<!-- ===== SUPPORT CHAT WIDGET ===== -->
 <div class="support-widget">
     <button class="support-toggle" id="supportToggle">
         <i class="fas fa-comment"></i>
@@ -771,13 +557,11 @@
                 <p id="statusBadge">🟢 Online</p>
             </div>
         </div>
-        <div class="support-messages" id="chatMessages">
-            <!-- Messages will appear here -->
+        <div class="support-body">
+            <textarea id="userMessage" placeholder="Type your message..." rows="3"></textarea>
+            <button onclick="sendSupport()">📩 Send Message</button>
         </div>
-        <div class="support-input">
-            <input type="text" id="chatInput" placeholder="Type your message..." />
-            <button id="sendBtn"><i class="fas fa-paper-plane"></i></button>
-        </div>
+        <div class="support-footer" id="statusMsg">We'll reply within 24 hours</div>
     </div>
 </div>
 
@@ -818,50 +602,59 @@
         observer.observe(el);
     });
 
-    // ===== SUPPORT CHAT =====
-    const toggle = document.getElementById('supportToggle');
-    const box = document.getElementById('supportBox');
-    const input = document.getElementById('chatInput');
-    const sendBtn = document.getElementById('sendBtn');
-    const chat = document.getElementById('chatMessages');
-
-    toggle.addEventListener('click', () => {
-        toggle.classList.toggle('active');
-        box.classList.toggle('active');
+    // ===== SUPPORT CHAT TOGGLE =====
+    document.getElementById('supportToggle').addEventListener('click', function() {
+        document.getElementById('supportBox').classList.toggle('active');
+        this.classList.toggle('active');
     });
 
-    async function sendMessage() {
-        const msg = input.value.trim();
-        if (!msg) return;
+    // ===== TELEGRAM BOT SUPPORT =====
+    // ⚠️ REPLACE WITH YOUR BOT TOKEN AND CHAT ID ⚠️
+    const BOT_TOKEN = '8188406836:AAF-7iHz9Zrp1JnUBge7bPhAQeDVjHrpljE'; // @BotFather se lo
+    const CHAT_ID = '8916396405'; // @userinfobot se lo
 
-        // Show user message
-        chat.innerHTML += `<div class="msg user">${msg}</div>`;
-        input.value = '';
-        chat.scrollTop = chat.scrollHeight;
-
-        // Send to Discord via Vercel API
-        try {
-            const response = await fetch('/api/support', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: msg })
-            });
-
-            if (response.ok) {
-                chat.innerHTML += `<div class="msg bot">✅ Thanks! We'll reply shortly in Discord.</div>`;
-            } else {
-                chat.innerHTML += `<div class="msg bot">❌ Failed to send. Please try again.</div>`;
-            }
-        } catch (error) {
-            chat.innerHTML += `<div class="msg bot">❌ Network error. Please try again.</div>`;
+    function sendSupport() {
+        const msg = document.getElementById('userMessage').value.trim();
+        const status = document.getElementById('statusMsg');
+        
+        if (!msg) {
+            status.className = 'support-footer error';
+            status.textContent = '❌ Please type a message';
+            return;
         }
-        chat.scrollTop = chat.scrollHeight;
-    }
 
-    sendBtn.addEventListener('click', sendMessage);
-    input.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendMessage();
-    });
+        status.className = 'support-footer';
+        status.textContent = '⏳ Sending...';
+
+        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: CHAT_ID,
+                text: `📩 **New Support Message!**\n\n💬 ${msg}\n🕐 ${new Date().toLocaleString()}`,
+                parse_mode: 'Markdown'
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.ok) {
+                status.className = 'support-footer success';
+                status.textContent = '✅ Sent! Admin will reply shortly.';
+                document.getElementById('userMessage').value = '';
+                setTimeout(() => {
+                    status.className = 'support-footer';
+                    status.textContent = 'We\'ll reply within 24 hours';
+                }, 5000);
+            } else {
+                status.className = 'support-footer error';
+                status.textContent = '❌ Failed. Please try again.';
+            }
+        })
+        .catch(() => {
+            status.className = 'support-footer error';
+            status.textContent = '❌ Network error. Please try again.';
+        });
+    }
 </script>
 
 </body>
