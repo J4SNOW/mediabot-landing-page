@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wonder Lobby - Media Sharing Bot</title>
+    <title>Wonder Lobby - Premium Media Sharing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,162 +12,378 @@
             box-sizing: border-box;
         }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
             background: #0a0e17;
-            color: #fff;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: radial-gradient(ellipse at 20% 50%, #0d1b3e 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 50%, #1a0a2e 0%, transparent 60%),
+                        #0a0e17;
+        }
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle at 30% 40%, rgba(0, 212, 255, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(123, 47, 252, 0.03) 0%, transparent 50%);
+            animation: rotate 60s linear infinite;
+        }
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
         }
-        .container {
-            max-width: 800px;
-            background: #141b2b;
-            border-radius: 20px;
-            padding: 50px 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+
+        /* Header */
+        .header {
             text-align: center;
-            border: 1px solid #2a3a5a;
+            margin-bottom: 50px;
         }
-        .logo {
-            font-size: 60px;
-            margin-bottom: 10px;
+        .badge {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #00d4ff;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        .logo-icon {
+            font-size: 72px;
+            display: block;
+            margin-bottom: 15px;
         }
         h1 {
-            font-size: 42px;
+            font-size: 52px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00d4ff 0%, #7b2ffc 50%, #ff6fd8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+        .subtitle {
+            font-size: 20px;
+            color: #8899bb;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .subtitle span {
+            color: #00d4ff;
+            font-weight: 600;
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin: 30px 0 40px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 28px;
             font-weight: 800;
             background: linear-gradient(135deg, #00d4ff, #7b2ffc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
+            background-clip: text;
         }
-        .subtitle {
-            font-size: 18px;
-            color: #8899bb;
-            margin-bottom: 30px;
+        .stat-label {
+            font-size: 13px;
+            color: #667799;
+            margin-top: 4px;
         }
-        .features {
+
+        /* Features Grid */
+        .features-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 30px 0;
-            text-align: left;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 100%;
+            margin: 30px 0 40px;
         }
-        .feature-item {
-            background: #1e2a3f;
-            padding: 12px 18px;
-            border-radius: 10px;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-left: 3px solid #00d4ff;
+        .feature-card {
+            background: rgba(20, 27, 43, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
         }
-        .feature-item span {
-            font-size: 18px;
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.05);
         }
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .feature-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+        .feature-desc {
+            font-size: 12px;
+            color: #667799;
+        }
+
+        /* Buttons */
         .buttons {
             display: flex;
+            gap: 16px;
             flex-wrap: wrap;
-            gap: 15px;
             justify-content: center;
-            margin: 30px 0 20px;
+            margin: 20px 0 30px;
         }
         .btn {
-            padding: 14px 35px;
+            padding: 16px 40px;
             border-radius: 50px;
             font-weight: 600;
             font-size: 16px;
             text-decoration: none;
-            display: inline-block;
-            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
             border: none;
             cursor: pointer;
         }
         .btn-primary {
             background: linear-gradient(135deg, #00d4ff, #7b2ffc);
             color: #fff;
-            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.25);
         }
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.5);
+            box-shadow: 0 8px 40px rgba(0, 212, 255, 0.4);
         }
         .btn-secondary {
-            background: #1e2a3f;
+            background: rgba(255,255,255,0.05);
             color: #fff;
-            border: 1px solid #2a3a5a;
+            border: 1px solid rgba(255,255,255,0.1);
         }
         .btn-secondary:hover {
-            background: #2a3a5a;
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-3px);
         }
+        .btn-discord {
+            background: #5865F2;
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(88, 101, 242, 0.25);
+        }
+        .btn-discord:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 40px rgba(88, 101, 242, 0.4);
+        }
+
+        /* Rules Box */
         .rules-box {
-            background: #0a0e17;
-            padding: 20px;
-            border-radius: 12px;
-            margin: 20px 0;
-            text-align: left;
-            border: 1px solid #1e2a3f;
+            background: rgba(20, 27, 43, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 30px 35px;
+            width: 100%;
+            max-width: 700px;
+            margin: 20px 0 30px;
         }
         .rules-box h3 {
             color: #00d4ff;
-            margin-bottom: 10px;
             font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .rules-box p {
+        .rules-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 20px;
+        }
+        .rules-grid p {
             font-size: 13px;
             color: #8899bb;
-            line-height: 1.8;
+            padding: 4px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
+        .rules-grid p span {
+            font-size: 14px;
+        }
+
+        /* Footer */
         .footer {
-            margin-top: 25px;
+            margin-top: 30px;
+            text-align: center;
             font-size: 13px;
-            color: #445566;
+            color: #334466;
         }
-        @media (max-width: 600px) {
-            .container { padding: 30px 20px; }
-            h1 { font-size: 30px; }
-            .features { grid-template-columns: 1fr; }
+        .footer a {
+            color: #667799;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            color: #00d4ff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 36px; }
+            .subtitle { font-size: 17px; }
+            .features-grid { grid-template-columns: 1fr 1fr; }
+            .stats { gap: 20px; }
+            .stat-number { font-size: 22px; }
+            .rules-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 20px 15px; }
+            h1 { font-size: 28px; }
+            .features-grid { grid-template-columns: 1fr; }
             .buttons { flex-direction: column; align-items: center; }
-            .btn { width: 100%; text-align: center; }
+            .btn { width: 100%; justify-content: center; }
+            .rules-box { padding: 20px; }
         }
     </style>
 </head>
 <body>
 
+<div class="bg-animation"></div>
+
 <div class="container">
-    <div class="logo">🚀</div>
-    <h1>Wonder Lobby</h1>
-    <p class="subtitle">⭐ Premium Media Sharing Bot for Telegram</p>
-
-    <div class="features">
-        <div class="feature-item"><span>📤</span> Share 16+ Media</div>
-        <div class="feature-item"><span>🛡️</span> Secure &amp; Private</div>
-        <div class="feature-item"><span>⚡</span> Ultra Fast Sharing</div>
-        <div class="feature-item"><span>👑</span> Admin Controls</div>
-        <div class="feature-item"><span>🏆</span> Leaderboard</div>
-        <div class="feature-item"><span>🔗</span> Discord Backup</div>
-    </div>
-
-    <div class="buttons">
-        <a href="https://t.me/Wnnndrrhbb_bot" target="_blank" class="btn btn-primary">🤖 Open Bot</a>
-        <a href="https://discord.com/invite/zScN7Ef3Hh" target="_blank" class="btn btn-secondary">💬 Discord</a>
-    </div>
-
-    <div class="rules-box">
-        <h3>📜 Lobby Rules</h3>
-        <p>
-            🚫 No illegal content<br>
-            🔞 Only 16+ content<br>
-            ❌ No spam or flood<br>
-            🔗 No links<br>
-            ⚠️ Rule violation = Permanent Ban
+    <!-- Header -->
+    <div class="header">
+        <span class="badge">🚀 Now Live</span>
+        <span class="logo-icon">🌟</span>
+        <h1>Wonder Lobby</h1>
+        <p class="subtitle">
+            Premium <span>Media Sharing</span> Bot for Telegram — 
+            Fast, Secure &amp; Private
         </p>
     </div>
 
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat-item">
+            <div class="stat-number">3000+</div>
+            <div class="stat-label">Users</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">&lt;2s</div>
+            <div class="stat-label">Share Speed</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Uptime</div>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <div class="features-grid">
+        <div class="feature-card">
+            <span class="feature-icon">📤</span>
+            <div class="feature-title">16+ Media Sharing</div>
+            <div class="feature-desc">Videos, Photos, GIFs, Stickers</div>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">🛡️</span>
+            <div class="feature-title">Secure &amp; Private</div>
+            <div class="feature-desc">End-to-end encrypted sharing</div>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">⚡</span>
+            <div class="feature-title">Ultra Fast</div>
+            <div class="feature-desc">Instant delivery to all users</div>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">👑</span>
+            <div class="feature-title">Admin Controls</div>
+            <div class="feature-desc">Full moderation capabilities</div>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">🏆</span>
+            <div class="feature-title">Leaderboard</div>
+            <div class="feature-desc">Top contributors system</div>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">🔗</span>
+            <div class="feature-title">Discord Backup</div>
+            <div class="feature-desc">Community backup server</div>
+        </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="buttons">
+        <a href="https://t.me/Wnnndrrhbb_bot" target="_blank" class="btn btn-primary">
+            🤖 Open Bot
+        </a>
+        <a href="https://discord.com/invite/zScN7Ef3Hh" target="_blank" class="btn btn-discord">
+            💬 Discord
+        </a>
+        <a href="#rules" class="btn btn-secondary">
+            📜 Rules
+        </a>
+    </div>
+
+    <!-- Rules -->
+    <div class="rules-box" id="rules">
+        <h3>📜 Lobby Rules</h3>
+        <div class="rules-grid">
+            <p><span>🚫</span> No illegal content</p>
+            <p><span>🔞</span> Only 16+ content</p>
+            <p><span>❌</span> No spam or flood</p>
+            <p><span>🔗</span> No links</p>
+            <p><span>🚫</span> No CP or prohibited content</p>
+            <p><span>⚠️</span> Violation = Permanent Ban</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
     <div class="footer">
-        Made with ❤️ for Wonder Lobby Community
+        Made with ❤️ for Wonder Lobby Community &bull; 
+        <a href="#" onclick="event.preventDefault()">Privacy</a> &bull; 
+        <a href="#" onclick="event.preventDefault()">Terms</a>
     </div>
 </div>
 
