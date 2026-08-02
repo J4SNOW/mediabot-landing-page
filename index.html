@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Wonder Hub - Ultimate Telegram Community</title>
+    <title>Wonder Hub - Premium Telegram Community</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <style>
         * {
@@ -22,7 +22,7 @@
             overflow-x: hidden;
         }
 
-        /* ===== BACKGROUND IMAGE ===== */
+        /* ===== BACKGROUND ===== */
         .bg {
             position: fixed;
             top: 0;
@@ -31,7 +31,7 @@
             height: 100%;
             z-index: 0;
             background: 
-                linear-gradient(135deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.3) 100%),
+                linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 100%),
                 url('https://images.pexels.com/photos/6985006/pexels-photo-6985006.jpeg?auto=compress&cs=tinysrgb&w=1920') no-repeat center center/cover;
             background-attachment: fixed;
         }
@@ -49,16 +49,36 @@
 
         /* ===== ANIMATIONS ===== */
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(40px); }
+            from { opacity: 0; transform: translateY(50px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+            50% { text-shadow: 0 0 40px rgba(0, 212, 255, 0.6), 0 0 80px rgba(123, 47, 252, 0.3); }
+        }
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(0.98); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
         }
 
         .animate {
-            animation: fadeUp 0.8s ease forwards;
+            animation: fadeUp 0.9s ease forwards;
         }
         .delay-1 { animation-delay: 0.1s; opacity: 0; }
         .delay-2 { animation-delay: 0.2s; opacity: 0; }
@@ -74,12 +94,18 @@
             border-bottom: 1px solid rgba(255,255,255,0.06);
             flex-wrap: wrap;
             gap: 16px;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            background: rgba(11, 15, 26, 0.4);
+            border-radius: 16px;
+            padding: 16px 28px;
+            margin-bottom: 10px;
         }
         .logo {
-            font-size: 26px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #00d4ff, #7b2ffc);
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00d4ff, #7b2ffc, #ff6fd8);
+            background-size: 200% 200%;
+            animation: gradientMove 4s ease infinite;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -120,7 +146,7 @@
             color: #00d4ff;
         }
         .nav-btn {
-            padding: 8px 24px;
+            padding: 10px 28px;
             border-radius: 50px;
             background: linear-gradient(135deg, #00d4ff, #7b2ffc);
             color: #fff !important;
@@ -133,8 +159,8 @@
             display: none !important;
         }
         .nav-btn:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.35);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.4);
         }
 
         /* ===== HERO ===== */
@@ -149,35 +175,49 @@
             display: inline-block;
             background: rgba(0, 212, 255, 0.1);
             border: 1px solid rgba(0, 212, 255, 0.15);
-            padding: 6px 20px;
+            padding: 8px 24px;
             border-radius: 50px;
             font-size: 12px;
             font-weight: 600;
             color: #00d4ff;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             animation: pulse 2s infinite;
         }
         .hero h1 {
-            font-size: 64px;
+            font-size: 72px;
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 16px;
-            letter-spacing: -2px;
+            letter-spacing: -3px;
+            animation: glow 3s ease-in-out infinite;
         }
         .hero h1 .gradient {
             background: linear-gradient(135deg, #00d4ff 0%, #7b2ffc 40%, #ff6fd8 100%);
+            background-size: 200% 200%;
+            animation: gradientMove 5s ease infinite;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+        .hero .typewriter {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid #00d4ff;
+            animation: typewriter 2s steps(20) 1s forwards, blink 0.8s step-end infinite;
+            width: 0;
+            font-weight: 300;
+            color: #8899bb;
+            font-size: 22px;
         }
         .hero p {
             font-size: 20px;
             color: #99aacd;
             max-width: 640px;
-            line-height: 1.8;
-            margin: 8px auto 35px;
+            line-height: 1.9;
+            margin: 20px auto 35px;
         }
         .hero p span {
             color: #00d4ff;
@@ -189,9 +229,10 @@
             gap: 16px;
             flex-wrap: wrap;
             justify-content: center;
+            margin-top: 10px;
         }
         .btn {
-            padding: 14px 40px;
+            padding: 16px 44px;
             border-radius: 50px;
             font-weight: 600;
             font-size: 15px;
@@ -205,14 +246,27 @@
             position: relative;
             overflow: hidden;
         }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: 0.5s;
+        }
+        .btn:hover::before {
+            left: 100%;
+        }
         .btn-primary {
             background: linear-gradient(135deg, #00d4ff, #7b2ffc);
             color: #fff;
             box-shadow: 0 4px 24px rgba(0, 212, 255, 0.25);
         }
         .btn-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 40px rgba(0, 212, 255, 0.4);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 40px rgba(0, 212, 255, 0.5);
         }
         .btn-secondary {
             background: rgba(255,255,255,0.06);
@@ -229,8 +283,8 @@
             box-shadow: 0 4px 20px rgba(88, 101, 242, 0.2);
         }
         .btn-discord:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 40px rgba(88, 101, 242, 0.35);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 40px rgba(88, 101, 242, 0.4);
         }
 
         /* ===== STATS ===== */
@@ -243,10 +297,13 @@
         }
         .stat-item {
             text-align: center;
+            animation: float 3s ease-in-out infinite;
         }
+        .stat-item:nth-child(2) { animation-delay: 0.5s; }
+        .stat-item:nth-child(3) { animation-delay: 1s; }
         .stat-number {
-            font-size: 40px;
-            font-weight: 800;
+            font-size: 44px;
+            font-weight: 900;
             background: linear-gradient(135deg, #00d4ff, #7b2ffc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -263,16 +320,20 @@
         /* ===== SECTION TITLES ===== */
         .section-title {
             text-align: center;
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 800;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             letter-spacing: -1px;
+            background: linear-gradient(135deg, #00d4ff, #7b2ffc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         .section-subtitle {
             text-align: center;
             color: #667799;
-            font-size: 16px;
-            margin-bottom: 30px;
+            font-size: 17px;
+            margin-bottom: 35px;
         }
 
         /* ===== FEATURES ===== */
@@ -287,31 +348,31 @@
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255,255,255,0.06);
             border-radius: 20px;
-            padding: 28px 24px;
+            padding: 32px 24px;
             text-align: center;
             transition: 0.4s;
             cursor: pointer;
         }
         .feature-card:hover {
             transform: translateY(-8px) scale(1.02);
-            border-color: rgba(0, 212, 255, 0.2);
-            box-shadow: 0 12px 50px rgba(0, 0, 0, 0.4);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 12px 50px rgba(0, 212, 255, 0.1);
         }
         .feature-icon {
-            font-size: 36px;
-            margin-bottom: 10px;
+            font-size: 40px;
+            margin-bottom: 12px;
             display: block;
         }
         .feature-title {
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 700;
             color: #fff;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
         .feature-desc {
             font-size: 13px;
             color: #667799;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         /* ===== SCREENSHOTS ===== */
@@ -422,22 +483,23 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 900px) {
-            .hero h1 { font-size: 42px; }
+            .hero h1 { font-size: 48px; }
             .features { grid-template-columns: 1fr 1fr; }
             .stats { gap: 40px; }
             .screenshot-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 600px) {
-            .hero h1 { font-size: 30px; }
-            .navbar { flex-direction: column; align-items: center; }
+            .hero h1 { font-size: 34px; }
+            .navbar { flex-direction: column; align-items: center; padding: 16px; }
             .nav-links { flex-wrap: wrap; justify-content: center; gap: 14px; }
             .features { grid-template-columns: 1fr; }
             .stats { gap: 20px; }
-            .stat-number { font-size: 28px; }
+            .stat-number { font-size: 30px; }
             .hero-buttons { flex-direction: column; align-items: center; }
             .btn { width: 100%; justify-content: center; }
             .screenshot-grid { grid-template-columns: 1fr; }
-            .section-title { font-size: 24px; }
+            .section-title { font-size: 26px; }
+            .hero .typewriter { font-size: 16px; white-space: normal; border-right: none; }
         }
     </style>
 </head>
@@ -462,11 +524,12 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero" id="home">
-        <span class="hero-badge animate delay-1">🚀 Now Live</span>
+        <span class="hero-badge animate delay-1">✨ Now Live</span>
         <h1 class="animate delay-2">
             Welcome to <br/>
             <span class="gradient">Wonder Hub</span>
         </h1>
+        <div class="typewriter animate delay-3">Where Communities Connect &amp; Share</div>
         <p class="animate delay-3">
             The Ultimate <span>Telegram Community</span> Platform.<br/>
             Share photos, videos, and GIFs instantly with a fast, secure,
